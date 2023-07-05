@@ -42,6 +42,10 @@ const Reserva = sequelize.define(
       type: DataTypes.STRING(100),
       allowNull: false,
     },
+    precio_total: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+    },
     telefono: {
       type: DataTypes.STRING(100),
       allowNull: false,
