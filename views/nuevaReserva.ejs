@@ -39,40 +39,38 @@
         <div class="row">
           <!-- Fecha Reserva -->
           <div class="col col-md-6 col-sm-12 mb-3">
-            <label for="fechareserva" class="form-label"
-              >Fecha de reserva</label
-            >
+            <label for="fecha_salida" class="form-label">Fecha Reserva</label>
             <input
-              type="datetime"
+              type="datetime-local"
               required="true"
               class="form-control"
-              id="fechareserva"
-              name="fechareserva"
+              id="fecha_reserva"
+              name="fecha_reserva"
+            />
+          </div>
+          <!-- Fecha salida -->
+          <div class="col col-md-6 col-sm-12 mb-3">
+            <label for="fecha_salida" class="form-label">Fecha Salida</label>
+            <input
+              type="datetime-local"
+              required="true"
+              class="form-control"
+              id="fecha_salida"
+              name="fecha_salida"
             />
           </div>
 
-          <!-- Fecha Salida -->
-          <div class="col col-md-6 col-sm-12 mb-3">
-            <label for="fechasalida" class="form-label">Fecha de alida</label>
-            <input
-              type="datetime"
-              required="true"
-              class="form-scontrol"
-              id="fechasalida"
-              name="fechasalida"
-            />
-          </div>
           <!-- Fecha de llagada -->
           <div class="col col-md-6 col-sm-12 mb-3">
-            <label for="fechallegada" class="form-label"
-              >Fecha de llegada</label
+            <label for="fecha_salida" class="form-label"
+              >Fecha de Llegada</label
             >
             <input
-              type="datetime"
+              type="datetime-local"
               required="true"
               class="form-control"
-              id="fechallegada"
-              name="fechallegada"
+              id="fecha_Llegada"
+              name="fecha_Llegada"
             />
           </div>
         </div>
@@ -109,7 +107,7 @@
               type="number"
               required="true"
               class="form-control"
-              id="preciototal"
+              id="precio_total"
               name="precio_total"
             />
           </div>
@@ -156,6 +154,6 @@
   </div>
 </div>
 
-<script src="/js/crear-reserva.js"></script>
+<script src="js/crear-reserva"></script>
 
 <%- include('partials/footer') %>

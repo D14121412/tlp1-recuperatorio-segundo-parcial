@@ -2,7 +2,7 @@
 const { sequelize, DataTypes } = require("../database");
 
 const Reserva = sequelize.define(
-  "Reserva",
+  "reservas",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -81,3 +81,10 @@ const Reserva = sequelize.define(
     tableName: "reservas",
   }
 );
+
+// Crear tabla si no existe ({force: true} borra y crea la tabla)
+Reserva.sync({ force: false }).then(() => {
+  console.log("Tabla de Reservas creada");
+});
+
+module.exports = Reserva;

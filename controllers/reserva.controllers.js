@@ -1,17 +1,17 @@
 const Reserva = require("../models/Reserva");
 const ctrl = {};
 
-ctrl.renderIndex = (req, res) => {
-  res.render("lista-reserva");
+ctrl.renderListaReservas = (req, res) => {
+  res.render("listadoReservas");
 };
 
 ctrl.renderFormNuevaReserva = (req, res) => {
-  res.render("nueva-reserva");
+  res.render("nuevaReserva");
 };
 
 ctrl.renderFormEditarReservas = (req, res) => {
   const { id } = req.params;
-  res.render("editar-reserva", { id });
+  res.render("editarReservas", { id });
 };
 
 // ==========================================
@@ -19,18 +19,38 @@ ctrl.renderFormEditarReservas = (req, res) => {
 // ==========================================
 
 // Obtener todas las reservas
-ctrl.obtenerReserva = async (req, res) => {
+ctrl.obtenerReservas = async (req, res) => {
   try {
     const reservas = await Reserva.findAll({
       where: {
         estado: true,
       },
     });
+
     return res.json(reservas);
   } catch (error) {
     console.log("Error al obtener las reservas", error);
     return res.status(500).json({
       message: "Error al obtener las reservas",
+    });
+  }
+};
+
+// Obtener los datos de una reserva a través de la Primary Key (Pk)
+ctrl.obtenerReserva = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const reserva = await Reserva.findOne({
+      whare: {
+        estado: true,
+        id,
+      },
+    });
+    return res.json(reserva);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Error al obtener la reserva",
     });
   }
 };
@@ -48,10 +68,10 @@ ctrl.crearReserva = async (req, res) => {
     precio_total,
     telefono,
     email,
-  } = req.body;
+  } = req.body; // JSON.stringify(reserva);
 
   try {
-    // se crea una nueva instacia
+    // Se crea una nueva instancia de reserva
     const nuevaReserva = new Reserva({
       nombre,
       codigo: new Date().getTime(),
@@ -66,12 +86,10 @@ ctrl.crearReserva = async (req, res) => {
       email,
     });
 
-    // se guarda en la base de datos
+    // Se guarda en la BD
     await nuevaReserva.save();
 
-    return res.status(201).json({
-      message: "Reserva creada con exito",
-    });
+    return res.status(201).json({ message: "Reserva creada con éxito" });
   } catch (error) {
     console.log("Error al crear la reserva", error);
     return res.status(500).json({ message: "Error al crear la reserva" });

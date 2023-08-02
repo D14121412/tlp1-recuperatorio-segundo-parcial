@@ -4,10 +4,11 @@ const router = Router();
 
 // importar controllers
 const {
-  renderIndex,
+  renderListaReservas,
   renderFormNuevaReserva,
   renderFormEditarReservas,
   obtenerReserva,
+  obtenerReservas,
   crearReserva,
   actualizarReserva,
   eliminarReserva,
@@ -18,7 +19,7 @@ const {
 // ==========================================
 
 // Obtener todas las reservas
-router.get("/", renderIndex);
+router.get("/", renderListaReservas);
 
 // Formulario para crear una reserva
 router.get("/crear-reserva", renderFormNuevaReserva);
@@ -31,10 +32,12 @@ router.get("/actualizar-reserva/:id", renderFormEditarReservas);
 // ==========================================
 
 // Obtener todas las reservas
-router.get("/api", obtenerReserva);
+router.get("/api", obtenerReservas);
 
 // Crear una reserva
 router.post("/api", crearReserva);
+
+router.get("/api/:id", obtenerReserva);
 
 // Actualizar una reserva
 router.put("/api/:id", actualizarReserva);
